@@ -10,10 +10,10 @@ package com.ads;
 public class RandomContext extends Context {
 
     // no of vertices
-    int nVertices;
+    private int nVertices;
 
     // density in % = ( ratio of edges / total posssible edges ) * 100
-    int density;
+    private int density;
 
     RandomContext(int nVertices, int density) {
         super(true);

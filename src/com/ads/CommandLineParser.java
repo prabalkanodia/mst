@@ -1,5 +1,7 @@
 package com.ads;
 
+import java.io.File;
+
 /**
  * Created with IntelliJ IDEA.
  * User: prabal
@@ -32,8 +34,11 @@ public class CommandLineParser {
         } else if (option.equals("-s") || option.equals("-f")) {
             boolean isFHeap = option.equals("-f");
             String filename = args[1].trim();
-
-            context = new UserContext(isFHeap, filename);
+            File file = new File(filename);
+            if (!file.isFile())
+                context = new UserContext(isFHeap, filename);
+            else
+                System.out.println("File does not exist: " + filename);
         }
 
         return context;
