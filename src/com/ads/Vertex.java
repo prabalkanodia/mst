@@ -13,7 +13,14 @@ public class Vertex {
     // distance from source
     private int key;
     // parent
-    private int pi;
+    private Vertex pi;
+
+    public Vertex(int v) {
+        this.v = v;
+        this.key = -1;
+        this.pi = null;
+
+    }
 
     public int getV() {
         return v;
@@ -31,11 +38,24 @@ public class Vertex {
         this.key = key;
     }
 
-    public int getPi() {
+    public Vertex getPi() {
         return pi;
     }
 
-    public void setPi(int pi) {
+    public void setPi(Vertex pi) {
         this.pi = pi;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || !(o instanceof Vertex))
+            return false;
+        Vertex v  = (Vertex)o;
+        return this.getV() == v.getV();
+    }
+
+    @Override
+    public int hashCode() {
+        return String.format("%d", getV()).hashCode();
     }
 }

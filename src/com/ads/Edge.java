@@ -1,5 +1,7 @@
 package com.ads;
 
+import java.util.ArrayList;
+
 /**
  * Created with IntelliJ IDEA.
  * User: prabal
@@ -8,18 +10,54 @@ package com.ads;
  * To change this template use File | Settings | File Templates.
  */
 public class Edge implements Comparable<Edge> {
-    private int u;
-    private int v;
+    private Vertex u;
+    private Vertex v;
     private int cost;
 
-    public Edge(int u, int v) {
+    public Edge(Vertex u, Vertex v) {
         this(u, v, 0);
     }
 
-    public Edge(int u, int v, int cost) {
-        this.u = u < v ? u : v;
-        this.v = u + v - this.u;
+    public Edge(int a, int b, int cost) {
+        if (a < b) {
+            this.u = new Vertex(a);
+            this.v = new Vertex(b);
+        } else {
+            this.u = new Vertex(b);
+            this.v = new Vertex(a);
+        }
         this.cost = cost;
+    }
+
+    public Edge(Vertex u, Vertex v, int cost) {
+        if (u.getV() < v.getV()) {
+            this.u = u;
+            this.v = v;
+        } else {
+            this.u = v;
+            this.v = u;
+        }
+        this.cost = cost;
+    }
+
+    public int from() {
+        return this.u.getV();
+    }
+
+    public int to() {
+        return this.v.getV();
+    }
+
+    public int getCost() {
+        return this.cost;
+    }
+
+    public int other(int u) {
+        return this.u.getV() == u ? this.v.getV() : this.u.getV();
+    }
+
+    public Vertex otherV(Vertex u) {
+        return this.u.getV() == u.getV() ? this.v : this.u;
     }
 
     @Override
@@ -40,10 +78,10 @@ public class Edge implements Comparable<Edge> {
         //if (this.cost < that.cost) return -1;
         //if (this.cost > that.cost) return +1;
 
-        if (this.u < that.u) return -1;
-        if (this.u > that.u) return +1;
-        if (this.v < that.v) return -1;
-        if (this.v > that.v) return +1;
+        if (this.u.getV() < that.u.getV()) return -1;
+        if (this.u.getV() > that.u.getV()) return +1;
+        if (this.v.getV() < that.v.getV()) return -1;
+        if (this.v.getV() > that.v.getV()) return +1;
 
         return 0;
     }

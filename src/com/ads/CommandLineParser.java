@@ -35,7 +35,7 @@ public class CommandLineParser {
             boolean isFHeap = option.equals("-f");
             String filename = args[1].trim();
             File file = new File(filename);
-            if (!file.isFile())
+            if (file.isFile())
                 context = new UserContext(isFHeap, filename);
             else
                 System.out.println("File does not exist: " + filename);
