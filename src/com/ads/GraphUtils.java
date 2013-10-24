@@ -22,7 +22,7 @@ public class GraphUtils {
     public enum Status {UNVISITED, VISITING, VISITED}
 
     public static long calculateE(int v, int d) {
-        return (d * v * (v - 1)) / (2 * 100);
+        return ((v - 1)) * ((d * v) / (2 * 100));
     }
 
     public static boolean validateVertices(int v, int d) {
@@ -122,12 +122,16 @@ public class GraphUtils {
         long e = calculateE(v, d);
         Graph g = new Graph(v);
 
-        boolean[][] adjMatrix = new boolean[v][v];
+        Vertex[] vertices = new Vertex[v];
+        for (int i = 0; i < v; i++) {
+            vertices[i] = new Vertex(i);
+        }
+
+        boolean[][] marked = new boolean[v][v];
         for (int i = 0; i < v; i++)
             for (int j = 0; j < v; j++) {
-                adjMatrix[i][j] = false;
+                marked[i][j] = false;
             }
-        //HashSet<Edge> edges = new HashSet<Edge>();
 
         ArrayList<Integer> list1 = new ArrayList<Integer>();
         ArrayList<Integer> list2 = new ArrayList<Integer>();
@@ -144,12 +148,12 @@ public class GraphUtils {
         // Add this edge to hashset
         Random rnd = new Random();
         int c = rnd.nextInt(MAX_EDGE_COST) + 1;
-        Edge edge = new Edge(x, y, c);
+        Edge edge = new Edge(vertices[x], vertices[y], c);
         //edges.add(edge);
         //g.addEdge(x, y);
-        adjMatrix[x][y] = true;
-        adjMatrix[y][x] = true;
         g.addEdge(edge);
+        marked[x][y] = true;
+        marked[y][x] = true;
 
         // Add to processed list
         list2.add(x);
@@ -164,39 +168,36 @@ public class GraphUtils {
             Random r = new Random();
             int cost = r.nextInt(MAX_EDGE_COST) + 1;
 
-            Edge link = new Edge(from, to, cost);
-            //if (from != to && !(g.edges()).contains(link)) {
-            if (from != to && !adjMatrix[from][to]) {
+            if (from != to && !marked[from][to]) {
                 list2.add(from);
                 //edges.add(link);
                 //g.addEdge(from, to);
-                adjMatrix[from][to] = true;
-                adjMatrix[to][from] = true;
+                Edge link = new Edge(vertices[from], vertices[to], cost);
                 g.addEdge(link);
+                marked[from][to] = true;
+                marked[to][from] = true;
             }
         }
 
         // All elements are in list2. Decorate the tree to form a graph
         long count = g.getE();
         while (count < e) {
-            //System.out.println(count);
-            Collections.shuffle(list2);
-            //System.out.println("shuffle");
+            //Collections.shuffle(list2);
             Random r = new Random();
             //int from = list2.get(0);
             int from = r.nextInt(v);
             //int to = list2.get(1);
             int to = r.nextInt(v);
             //if (from != to && !g.edges().contains(link)) {
-            if (from != to && !adjMatrix[from][to]) {
+            if (from != to && !marked[from][to]) {
                 //Random r = new Random();
-                int cost = r.nextInt(MAX_EDGE_COST) + 1;
+                //int cost = r.nextInt(MAX_EDGE_COST) + 1;
 
-                Edge link = new Edge(from, to, cost);
+                Edge link = new Edge(vertices[from], vertices[to], r.nextInt(MAX_EDGE_COST) + 1);
 
                 //edges.add(link);
-                adjMatrix[from][to] = true;
-                adjMatrix[to][from] = true;
+                marked[from][to] = true;
+                marked[to][from] = true;
                 g.addEdge(link);
                 count++;
                 //g.addEdge(from, to);
@@ -205,6 +206,95 @@ public class GraphUtils {
 
         return g;
     }
+
+//    public static Graph createQuickGraph(int v, int d) {
+//        long e = calculateE(v, d);
+//        Graph g = new Graph(v);
+//
+//        boolean[][] adjMatrix = new boolean[v][v];
+//        for (int i = 0; i < v; i++)
+//            for (int j = 0; j < v; j++) {
+//                adjMatrix[i][j] = false;
+//            }
+//        //HashSet<Edge> edges = new HashSet<Edge>();
+//
+//        ArrayList<Integer> list1 = new ArrayList<Integer>();
+//        ArrayList<Integer> list2 = new ArrayList<Integer>();
+//
+//        for (int i = 0; i < v; i++)
+//            list1.add(i);
+//
+//        // Bootstrap
+//        Collections.shuffle(list1);
+//        int x = list1.remove(0);
+//        Collections.shuffle(list1);
+//        int y = list1.remove(0);
+//
+//        // Add this edge to hashset
+//        Random rnd = new Random();
+//        int c = rnd.nextInt(MAX_EDGE_COST) + 1;
+//        Edge edge = new Edge(x, y, c);
+//        //edges.add(edge);
+//        //g.addEdge(x, y);
+//        adjMatrix[x][y] = true;
+//        adjMatrix[y][x] = true;
+//        g.addEdge(edge);
+//
+//        // Add to processed list
+//        list2.add(x);
+//        list2.add(y);
+//
+//        // Ensure a tree is created
+//        while (!list1.isEmpty()) {
+//            Collections.shuffle(list1);
+//            int from = list1.remove(0);
+//            Collections.shuffle(list2);
+//            int to = list2.get(0);
+//            Random r = new Random();
+//            int cost = r.nextInt(MAX_EDGE_COST) + 1;
+//
+//            Edge link = new Edge(from, to, cost);
+//            //if (from != to && !(g.edges()).contains(link)) {
+//            if (from != to && !adjMatrix[from][to]) {
+//                list2.add(from);
+//                //edges.add(link);
+//                //g.addEdge(from, to);
+//                adjMatrix[from][to] = true;
+//                adjMatrix[to][from] = true;
+//                g.addEdge(link);
+//            }
+//        }
+//
+//        // All elements are in list2. Decorate the tree to form a graph
+//        long count = g.getE();
+//        while (count < e) {
+//            //System.out.println(count);
+//            Collections.shuffle(list2);
+//            //System.out.println("shuffle");
+//            Random r = new Random();
+//            //int from = list2.get(0);
+//            int from = r.nextInt(v);
+//            //int to = list2.get(1);
+//            int to = r.nextInt(v);
+//            //if (from != to && !g.edges().contains(link)) {
+//            if (from != to && !adjMatrix[from][to]) {
+//                //Random r = new Random();
+//                //int cost = r.nextInt(MAX_EDGE_COST) + 1;
+//
+//                Edge link = new Edge(from, to, r.nextInt(MAX_EDGE_COST) + 1);
+//
+//                //edges.add(link);
+//                adjMatrix[from][to] = true;
+//                adjMatrix[to][from] = true;
+//                g.addEdge(link);
+//                count++;
+//                System.out.println(from + "  " + to + "  " + count);
+//                //g.addEdge(from, to);
+//            }
+//        }
+//
+//        return g;
+//    }
 
 
     public static boolean isConnectedDFS(Graph g) {

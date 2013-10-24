@@ -15,9 +15,17 @@ public class Main {
                 //Graph g = GraphUtils.createQuickGraph(ctxt.getNVertices(), ctxt.getDensity());
                 //Graph g = GraphUtils.createQuickGraph(5, 100);
                 //System.out.println(g);
+                System.out.println("edge count: " + g.getE());
                 PrimMST prim = new PrimMST(g, false);
                 prim.mst(g);
-                prim.printMST();
+                //prim.printMST();
+                int w1 = prim.cost();
+                prim.reset(g, false);
+                prim.mst(g);
+                //prim.printMST();
+                int w2 = prim.cost();
+
+                System.out.println("Prim1: " + w1 + " Prim2: " + w2);
                 //prim.reset(g, false);
                 //prim.mst(g);
                 //prim.printMST();
