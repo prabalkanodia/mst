@@ -19,6 +19,9 @@ public class Graph {
     // no of edges
     private long e;
 
+    // Vertex array
+    private Vertex[] vertices;
+
     // Adjacency list: array of edge list
     private ArrayList<Edge>[] adj;
 
@@ -36,10 +39,27 @@ public class Graph {
 //        init(v);
         this.v = v;
         this.e = 0;
-        adj = (ArrayList<Edge>[]) new ArrayList[v];
 
+        vertices = new Vertex[v];
+        for (int i = 0; i < v; i++) {
+            vertices[i] = new Vertex(i);
+        }
+
+        adj = (ArrayList<Edge>[]) new ArrayList[v];
         for (int i = 0; i < v; i++)
             adj[i] = new ArrayList<Edge>();
+    }
+
+    public Vertex[] vertices() {
+        return vertices;
+    }
+
+    public void resetVertices() {
+        for (Vertex v : vertices) {
+            v.setKey(-1);
+            v.setPi(null);
+        }
+
     }
 
     public int getV() {

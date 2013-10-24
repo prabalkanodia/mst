@@ -39,13 +39,15 @@ public class PrimMST {
         int numV = g.getV();
         Random rnd = new Random();
         int start = rnd.nextInt(numV);
-        Vertex r = new Vertex(start);
+//        Vertex r = new Vertex(start);
+        Vertex r = (g.vertices())[start];
         r.setKey(0);
 
         q.add(r);
         for (int i = 0; i < g.getV(); i++) {
             if (i != start)
-                q.add(new Vertex(i));
+                //q.add(new Vertex(i));
+                q.add((g.vertices())[i]);
         }
 
         while (!q.isEmpty()) {
@@ -56,6 +58,8 @@ public class PrimMST {
                 if (inTree[x]) continue;
 
                 Vertex v = findV(q, x);
+                //Vertex v = e.otherV(u);
+                //if (inTree[v.getV()]) continue;
 
                 if (v != null && (v.getKey() == -1 || e.getCost() < v.getKey())) {
                     v.setPi(u);
@@ -70,6 +74,8 @@ public class PrimMST {
     }
 
     public void reset(Graph g, boolean isFHeap) {
+        // reset parent and minDist from parent for each vertex
+        g.resetVertices();
         this.isFHeap = isFHeap;
         inTree = new boolean[g.getV()]; // numV
         edges = new Edge[g.getV()]; // numEdges
@@ -86,7 +92,7 @@ public class PrimMST {
         System.out.println(this.cost());
         for (Edge e : edges) {
             if (e != null)
-                System.out.println(String.format("%d %d", e.from(), e.to()));
+                System.out.println(String.format("%d %d %d", e.from(), e.to(), e.getCost()));
         }
     }
 

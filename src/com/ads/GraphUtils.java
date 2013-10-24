@@ -22,7 +22,12 @@ public class GraphUtils {
     public enum Status {UNVISITED, VISITING, VISITED}
 
     public static long calculateE(int v, int d) {
-        return ((v - 1)) * ((d * v) / (2 * 100));
+        double tmp = d * v;
+        tmp /= (2 * 100);
+        tmp *= v - 1;
+
+        return (int) tmp;
+        //return ((v - 1)) * ((d * v) / (2 * 100));
     }
 
     public static boolean validateVertices(int v, int d) {
@@ -122,10 +127,12 @@ public class GraphUtils {
         long e = calculateE(v, d);
         Graph g = new Graph(v);
 
-        Vertex[] vertices = new Vertex[v];
-        for (int i = 0; i < v; i++) {
-            vertices[i] = new Vertex(i);
-        }
+//        Vertex[] vertices = new Vertex[v];
+//        for (int i = 0; i < v; i++) {
+//            vertices[i] = new Vertex(i);
+//        }
+
+        Vertex[] vertices = g.vertices();
 
         boolean[][] marked = new boolean[v][v];
         for (int i = 0; i < v; i++)
