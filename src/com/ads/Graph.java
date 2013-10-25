@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.util.*;
 
 /**
- * Created with IntelliJ IDEA.
+ * Graph represented with Adjaceny lists
  * User: prabal
  * Date: 10/18/13
  * Time: 8:05 PM

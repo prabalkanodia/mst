@@ -9,11 +9,10 @@ import java.util.HashSet;
 import java.util.Random;
 
 /**
- * Created with IntelliJ IDEA.
+ * Graph Utilities to generate graph and traverse bfs and dfs way
  * User: prabal
  * Date: 10/19/13
  * Time: 3:41 PM
- * To change this template use File | Settings | File Templates.
  */
 public class GraphUtils {
 

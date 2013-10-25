@@ -3,28 +3,26 @@
   <component name="ChangeListManager">
     <list default="true" id="bb898711-f21b-40b2-beb0-3a65f31327f3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ads/Edge.java" afterPath="$PROJECT_DIR$/src/com/ads/Edge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ads/FibHeap.java" afterPath="$PROJECT_DIR$/src/com/ads/FibHeap.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ads/Graph.java" afterPath="$PROJECT_DIR$/src/com/ads/Graph.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ads/GraphUtils.java" afterPath="$PROJECT_DIR$/src/com/ads/GraphUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ads/Main.java" afterPath="$PROJECT_DIR$/src/com/ads/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ads/PrimMST.java" afterPath="$PROJECT_DIR$/src/com/ads/PrimMST.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ads/Vertex.java" afterPath="$PROJECT_DIR$/src/com/ads/Vertex.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/input.txt" afterPath="$PROJECT_DIR$/data/input.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mst.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="bb898711-f21b-40b2-beb0-3a65f31327f3" time="1382716367932" ignored="false" />
-    <file path="/GraphUtils.java" changelist="bb898711-f21b-40b2-beb0-3a65f31327f3" time="1382735462615" ignored="false" />
+    <file path="/Dummy.txt" changelist="bb898711-f21b-40b2-beb0-3a65f31327f3" time="1382743522191" ignored="false" />
+    <file path="/GraphUtils.java" changelist="bb898711-f21b-40b2-beb0-3a65f31327f3" time="1382743686330" ignored="false" />
     <file path="/CommandLineParser.java" changelist="bb898711-f21b-40b2-beb0-3a65f31327f3" time="1382456355910" ignored="false" />
-    <file path="/Graph.java" changelist="bb898711-f21b-40b2-beb0-3a65f31327f3" time="1382736225911" ignored="false" />
+    <file path="/Graph.java" changelist="bb898711-f21b-40b2-beb0-3a65f31327f3" time="1382743644279" ignored="false" />
     <file path="/Edge.java" changelist="bb898711-f21b-40b2-beb0-3a65f31327f3" time="1382734049390" ignored="false" />
     <file path="/fragment.java" changelist="bb898711-f21b-40b2-beb0-3a65f31327f3" time="1382743432177" ignored="false" />
-    <file path="/Vertex.java" changelist="bb898711-f21b-40b2-beb0-3a65f31327f3" time="1382735468419" ignored="false" />
+    <file path="/Vertex.java" changelist="bb898711-f21b-40b2-beb0-3a65f31327f3" time="1382743616777" ignored="false" />
     <file path="/a.dummy" changelist="bb898711-f21b-40b2-beb0-3a65f31327f3" time="1382286766675" ignored="false" />
-    <file path="/Main.java" changelist="bb898711-f21b-40b2-beb0-3a65f31327f3" time="1382739439127" ignored="false" />
+    <file path="/Main.java" changelist="bb898711-f21b-40b2-beb0-3a65f31327f3" time="1382743712003" ignored="false" />
     <file path="/RandomContext.java" changelist="bb898711-f21b-40b2-beb0-3a65f31327f3" time="1382323410048" ignored="false" />
-    <file path="/PrimMST.java" changelist="bb898711-f21b-40b2-beb0-3a65f31327f3" time="1382743380317" ignored="false" />
+    <file path="/PrimMST.java" changelist="bb898711-f21b-40b2-beb0-3a65f31327f3" time="1382743591485" ignored="false" />
     <file path="/input.txt" changelist="bb898711-f21b-40b2-beb0-3a65f31327f3" time="1382451740602" ignored="false" />
     <file path="/FibHeap.java" changelist="bb898711-f21b-40b2-beb0-3a65f31327f3" time="1382734028776" ignored="false" />
     <file path="/FibonacciHeap.java" changelist="bb898711-f21b-40b2-beb0-3a65f31327f3" time="1382733904544" ignored="false" />
@@ -95,7 +93,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/ads/Edge.java" line="81" class="com.ads.Edge" package="com.ads">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/ads/Edge.java" line="80" class="com.ads.Edge" package="com.ads">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -110,7 +108,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/ads/Edge.java" line="86" class="com.ads.Edge" package="com.ads">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/ads/Edge.java" line="85" class="com.ads.Edge" package="com.ads">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -125,7 +123,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/ads/GraphUtils.java" line="83" class="com.ads.GraphUtils" package="com.ads">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/ads/GraphUtils.java" line="82" class="com.ads.GraphUtils" package="com.ads">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -140,7 +138,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/ads/PrimMST.java" line="93" class="com.ads.PrimMST" package="com.ads">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/ads/PrimMST.java" line="92" class="com.ads.PrimMST" package="com.ads">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -155,7 +153,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/ads/PrimMST.java" line="114" class="com.ads.PrimMST" package="com.ads">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/ads/PrimMST.java" line="113" class="com.ads.PrimMST" package="com.ads">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -170,7 +168,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/ads/PrimMST.java" line="117" class="com.ads.PrimMST" package="com.ads">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/ads/PrimMST.java" line="116" class="com.ads.PrimMST" package="com.ads">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -214,10 +212,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/ads/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="94" selection-start="1209" selection-end="1209" vertical-scroll-proportion="0.0">
+            <state line="3" column="13" selection-start="35" selection-end="35" vertical-scroll-proportion="0.10489511">
               <folding />
             </state>
           </provider>
@@ -235,10 +233,10 @@
       <file leaf-file-name="GraphUtils.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/ads/GraphUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="48" selection-start="990" selection-end="1030" vertical-scroll-proportion="0.0">
+            <state line="12" column="0" selection-start="277" selection-end="327" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="e#4999#5008#0" expanded="true" />
-                <element signature="e#5060#5069#0" expanded="true" />
+                <element signature="e#4969#4978#0" expanded="true" />
+                <element signature="e#5030#5039#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -260,7 +258,7 @@
       <file leaf-file-name="Edge.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/ads/Edge.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="91" column="35" selection-start="2070" selection-end="2070" vertical-scroll-proportion="0.0">
+            <state line="9" column="0" selection-start="121" selection-end="121" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -269,7 +267,7 @@
       <file leaf-file-name="Graph.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/ads/Graph.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="40" selection-start="1263" selection-end="1263" vertical-scroll-proportion="0.0">
+            <state line="8" column="40" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -278,20 +276,20 @@
       <file leaf-file-name="Vertex.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/ads/Vertex.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="0" selection-start="432" selection-end="432" vertical-scroll-proportion="0.0">
+            <state line="7" column="0" selection-start="89" selection-end="89" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PrimMST.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="PrimMST.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/ads/PrimMST.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="165" column="43" selection-start="4792" selection-end="4792" vertical-scroll-proportion="3.944056">
+            <state line="12" column="0" selection-start="253" selection-end="253" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="e#1115#1123#0" expanded="true" />
+                <element signature="e#1091#1099#0" expanded="true" />
                 <element signature="method#fibmst#0;class#PrimMST#0" expanded="false" />
-                <element signature="e#2399#2407#0" expanded="true" />
+                <element signature="e#2375#2383#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -325,13 +323,13 @@
         <option value="$PROJECT_DIR$/src/com/ads/CommandLineParser.java" />
         <option value="$PROJECT_DIR$/src/com/ads/FibonacciHeap.java" />
         <option value="$PROJECT_DIR$/src/com/ads/FibHeap.java" />
+        <option value="$PROJECT_DIR$/data/input.txt" />
+        <option value="$PROJECT_DIR$/src/com/ads/PrimMST.java" />
         <option value="$PROJECT_DIR$/src/com/ads/Vertex.java" />
         <option value="$PROJECT_DIR$/src/com/ads/Graph.java" />
-        <option value="$PROJECT_DIR$/src/com/ads/GraphUtils.java" />
-        <option value="$PROJECT_DIR$/data/input.txt" />
         <option value="$PROJECT_DIR$/src/com/ads/Edge.java" />
+        <option value="$PROJECT_DIR$/src/com/ads/GraphUtils.java" />
         <option value="$PROJECT_DIR$/src/com/ads/Main.java" />
-        <option value="$PROJECT_DIR$/src/com/ads/PrimMST.java" />
       </list>
     </option>
   </component>
@@ -579,7 +577,11 @@
       <created>1382716383777</created>
       <updated>1382716383777</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Improved Array MST performance and refactored code">
+      <created>1382743546068</created>
+      <updated>1382743546068</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -650,7 +652,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented Fibonacci Heap" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved Array MST performance and refactored code" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -669,6 +671,7 @@
     <MESSAGE value="Created MST using Prim and simple array list.&#10;Fixed bugs." />
     <MESSAGE value="Improved graph generation time using vertex references in edge instances" />
     <MESSAGE value="Implemented Fibonacci Heap" />
+    <MESSAGE value="Improved Array MST performance and refactored code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -738,40 +741,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ads/PrimMST.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="253" selection-end="253" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#1091#1099#0" expanded="true" />
+            <element signature="method#fibmst#0;class#PrimMST#0" expanded="false" />
+            <element signature="e#2375#2383#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ads/Vertex.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="432" selection-end="432" vertical-scroll-proportion="0.0">
+        <state line="7" column="0" selection-start="89" selection-end="89" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ads/Graph.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="40" selection-start="1263" selection-end="1263" vertical-scroll-proportion="0.0">
+        <state line="8" column="40" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/input.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="5" selection-start="5" selection-end="5" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ads/GraphUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="48" selection-start="990" selection-end="1030" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#4999#5008#0" expanded="true" />
-            <element signature="e#5060#5069#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ads/Edge.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="35" selection-start="2070" selection-end="2070" vertical-scroll-proportion="0.0">
+        <state line="9" column="0" selection-start="121" selection-end="121" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -787,21 +784,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ads/Main.java">
+    <entry file="file://$PROJECT_DIR$/data/input.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="94" selection-start="1209" selection-end="1209" vertical-scroll-proportion="0.0">
+        <state line="0" column="5" selection-start="5" selection-end="5" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ads/PrimMST.java">
+    <entry file="file://$PROJECT_DIR$/src/com/ads/GraphUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="165" column="43" selection-start="4792" selection-end="4792" vertical-scroll-proportion="3.944056">
+        <state line="12" column="0" selection-start="277" selection-end="327" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#1115#1123#0" expanded="true" />
-            <element signature="method#fibmst#0;class#PrimMST#0" expanded="false" />
-            <element signature="e#2399#2407#0" expanded="true" />
+            <element signature="e#4969#4978#0" expanded="true" />
+            <element signature="e#5030#5039#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ads/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="13" selection-start="35" selection-end="35" vertical-scroll-proportion="0.10489511">
+          <folding />
         </state>
       </provider>
     </entry>

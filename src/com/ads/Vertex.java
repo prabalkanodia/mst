@@ -1,11 +1,10 @@
 package com.ads;
 
 /**
- * Created with IntelliJ IDEA.
+ * Vertex node
  * User: prabal
  * Date: 10/20/13
  * Time: 11:08 AM
- * To change this template use File | Settings | File Templates.
  */
 public class Vertex {
     // vertex no.

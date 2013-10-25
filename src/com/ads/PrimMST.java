@@ -6,11 +6,10 @@ import java.util.Queue;
 import java.util.Random;
 
 /**
- * Created with IntelliJ IDEA.
+ * Prim Algorithm implementation using Arrays, Fibonacci Heap and Queue
  * User: prabal
  * Date: 10/21/13
  * Time: 11:34 AM
- * To change this template use File | Settings | File Templates.
  */
 public class PrimMST {
 

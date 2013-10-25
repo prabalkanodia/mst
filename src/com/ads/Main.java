@@ -1,5 +1,11 @@
 package com.ads;
 
+/**
+ * Main class
+ * User: prabal
+ * Date: 10/19/13
+ * Time: 3:41 PM
+ */
 public class Main {
 
     public static void main(String[] args) {
