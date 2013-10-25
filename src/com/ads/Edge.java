@@ -3,13 +3,14 @@ package com.ads;
 import java.util.ArrayList;
 
 /**
- * Created with IntelliJ IDEA.
+ * Edge in a graph
  * User: prabal
  * Date: 10/19/13
  * Time: 9:54 PM
  * To change this template use File | Settings | File Templates.
  */
 public class Edge implements Comparable<Edge> {
+
     private Vertex u;
     private Vertex v;
     private int cost;
@@ -88,6 +89,6 @@ public class Edge implements Comparable<Edge> {
 
     @Override
     public String toString() {
-        return String.format("%d %d %d", this.u, this.v, this.cost);
+        return String.format("%d %d", this.u, this.v, this.cost);
     }
 }

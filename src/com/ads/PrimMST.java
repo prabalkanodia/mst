@@ -22,8 +22,7 @@ public class PrimMST {
     boolean[] inTree;
     // Cost of MST
     int cost;
-    // Min PQ
-    //MinPQ minPQ;
+    // Array or list of vertices containing minCost
     LinkedList<Vertex> q;
 
     public PrimMST(Graph g, boolean isFHeap) {
@@ -35,24 +34,150 @@ public class PrimMST {
         q = new LinkedList<Vertex>();
     }
 
-    public void fibmst(Graph g) throws Exception {
-        FibHeap fibPQ = new FibHeap();
-
-        Graph mst = new Graph(g.getV());
+    public void mst(Graph g) throws Exception {
+        if (isFHeap)
+            fibmst3(g);
+        else
+            //mst2(g);
+            arrmst(g);
     }
 
-    public void mst(Graph g) throws Exception {
+    public void fibmst3(Graph g) throws Exception {
+        FibHeap<Vertex> fibPQ = new FibHeap<Vertex>();
+
+        int numV = g.getV();
+        FibHeap.FibNode<Vertex>[] nodes = new FibHeap.FibNode[numV];
+
+        for (int i = 0; i < numV; i++)
+            g.vertices()[i].setKey(GraphUtils.INFINITY);
+
+        Random rnd = new Random();
+        int start = rnd.nextInt(numV);
+        Vertex r = (g.vertices())[start];
+        r.setKey(0);
+
+        nodes[start] = fibPQ.insert(r, 0);
+        for (int i = 0; i < g.getV(); i++) {
+            if (i != start)
+                nodes[i] = fibPQ.insert((g.vertices())[i], GraphUtils.INFINITY);
+        }
+
+        while (!fibPQ.isEmpty()) {
+            FibHeap.FibNode<Vertex> node = fibPQ.removeMin();
+            Vertex u = node.getItem();
+            inTree[u.getV()] = true;
+            for (Edge e : g.adjList(u.getV())) {
+                Vertex v = e.otherV(u);
+                if (inTree[v.getV()]) continue;
+
+                if (v != null && nodes[v.getV()] != null && e.getCost() < v.getKey()) {
+                    v.setPi(u);
+                    v.setKey(e.getCost());
+
+                    fibPQ.decreaseKey(nodes[v.getV()], e.getCost());
+                    edges[v.getV()] = e;
+                }
+            }
+        }
+
+    }
+
+    public void fibmst(Graph g) throws Exception {
+        FibHeap<Vertex> fibPQ = new FibHeap<Vertex>();
+
         int numV = g.getV();
         Random rnd = new Random();
         int start = rnd.nextInt(numV);
-//        Vertex r = new Vertex(start);
+        Vertex r = (g.vertices())[start];
+        r.setKey(0);
+
+        fibPQ.insert(r, 0);
+        while(!fibPQ.isEmpty()) {
+            Vertex u = (fibPQ.removeMin()).getItem();
+            inTree[u.getV()] = true;
+
+            for (Edge e : g.adjList(u.getV())) {
+                Vertex v = e.otherV(u);
+                if (inTree[v.getV()]) continue;
+
+                if (v != null && (v.getKey() == -1 || e.getCost() < v.getKey())) {
+                    v.setPi(u);
+                    v.setKey(e.getCost());
+
+                    fibPQ.insert(v, e.getCost());
+                    // ensure for vertex
+                    edges[v.getV()] = e;
+                    //edges.add(e);
+                }
+            }
+        }
+
+    }
+
+    public void arrmst(Graph g) throws Exception {
+        int numV = g.getV();
+        int[] minCosts = new int[numV];
+
+        Random rnd = new Random();
+        int start = rnd.nextInt(numV);
+        Vertex r = (g.vertices())[start];
+        r.setKey(0);
+
+        minCosts[start] = 0;
+        for (int i = 0; i < g.getV(); i++) {
+            if (i != start)
+                minCosts[i] = GraphUtils.INFINITY;
+        }
+
+
+        for (int i = 0; i < g.getV(); i++) {
+            int index = removeMin(minCosts);
+            inTree[index] = true;
+            for (Edge e : g.adjList(index)) {
+                Vertex v = e.otherV(g.vertices()[index]);
+                int other = v.getV();
+                if (inTree[other]) continue;
+
+                if (v != null && e.getCost() < v.getKey()) {
+                    v.setPi(g.vertices()[index]);
+                    v.setKey(e.getCost());
+
+                    //minCosts[index] = e.getCost();
+                    decreaseKey(minCosts, other, e.getCost());
+                    edges[other] = e;
+                }
+            }
+        }
+    }
+
+    public void decreaseKey(int[] minCosts, int idx, int newPriority) {
+        minCosts[idx] = newPriority;
+    }
+
+    public int removeMin(int[] minCosts) {
+        int minIdx = 0;
+        int minKey = GraphUtils.INFINITY;
+        for (int i = 0; i < minCosts.length; i++) {
+            if (minCosts[i] < minKey) {
+                minIdx = i;
+                minKey = minCosts[i];
+            }
+        }
+        // reset the lowest min to infinity
+        minCosts[minIdx] = GraphUtils.INFINITY;
+        return minIdx;
+    }
+
+    public void mstSimple(Graph g) throws Exception {
+        int numV = g.getV();
+        Random rnd = new Random();
+        int start = rnd.nextInt(numV);
         Vertex r = (g.vertices())[start];
         r.setKey(0);
 
         q.add(r);
         for (int i = 0; i < g.getV(); i++) {
             if (i != start)
-                //q.add(new Vertex(i));
                 q.add((g.vertices())[i]);
         }
 
@@ -60,40 +185,29 @@ public class PrimMST {
             Vertex u = extractMin(q);
             inTree[u.getV()] = true;
             for (Edge e : g.adjList(u.getV())) {
-                int x = e.other(u.getV());
-                if (inTree[x]) continue;
+                Vertex v = e.otherV(u);
+                if (inTree[v.getV()]) continue;
 
-                Vertex v = findV(q, x);
-                //Vertex v = e.otherV(u);
-                //if (inTree[v.getV()]) continue;
-
-                if (v != null && (v.getKey() == -1 || e.getCost() < v.getKey())) {
+                if (v != null && (e.getCost() < v.getKey())) {
                     v.setPi(u);
                     v.setKey(e.getCost());
 
-                    // ensure for vertex
+                    // save in mst edges array
                     edges[v.getV()] = e;
-                    //edges.add(e);
                 }
             }
         }
     }
 
     public void mst2(Graph g) throws Exception {
+
         int numV = g.getV();
         Random rnd = new Random();
         int start = rnd.nextInt(numV);
-//        Vertex r = new Vertex(start);
         Vertex r = (g.vertices())[start];
         r.setKey(0);
 
         q.add(r);
-//        for (int i = 0; i < g.getV(); i++) {
-//            if (i != start)
-//                //q.add(new Vertex(i));
-//                q.add((g.vertices())[i]);
-//        }
-
         while (!q.isEmpty()) {
             Vertex u = extractMin(q);
             inTree[u.getV()] = true;
@@ -105,14 +219,13 @@ public class PrimMST {
                 Vertex v = e.otherV(u);
                 if (inTree[v.getV()]) continue;
 
-                if (v != null && (v.getKey() == -1 || e.getCost() < v.getKey())) {
+                if (v != null && (e.getCost() < v.getKey())) {
                     v.setPi(u);
                     v.setKey(e.getCost());
 
                     q.add(v);
-                    // ensure for vertex
+                    // add to mst edges array
                     edges[v.getV()] = e;
-                    //edges.add(e);
                 }
             }
         }
@@ -124,14 +237,9 @@ public class PrimMST {
         this.isFHeap = isFHeap;
         inTree = new boolean[g.getV()]; // numV
         edges = new Edge[g.getV()]; // numEdges
-        //edges = new ArrayList<Edge>();
         cost = 0;
         q = new LinkedList<Vertex>();
     }
-
-//    public Iterable<Edge> edges() {
-//        return this.edges;
-//    }
 
     public void printMST() {
         System.out.println(this.cost());
@@ -171,8 +279,8 @@ public class PrimMST {
         return q.remove(rmv);
     }
 
-    public int cost() {
-        int cost = 0;
+    public long cost() {
+        long cost = 0;
         for (Edge e : edges) {
             if (e != null)
                 cost += e.getCost();

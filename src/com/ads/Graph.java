@@ -56,7 +56,7 @@ public class Graph {
 
     public void resetVertices() {
         for (Vertex v : vertices) {
-            v.setKey(-1);
+            v.setKey(GraphUtils.INFINITY);
             v.setPi(null);
         }
 

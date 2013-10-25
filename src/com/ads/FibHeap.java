@@ -2,16 +2,20 @@ package com.ads;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
- * Created with IntelliJ IDEA.
+ * Fibonacci Heap
  * User: prabal
  * Date: 10/21/13
  * Time: 11:33 AM
- * To change this template use File | Settings | File Templates.
  */
-public class FibHeap<T> {
+public final class FibHeap<T> {
 
+    /**
+     * Fibonacci Heap Node
+     * @param <T>
+     */
     public static final class FibNode<T> {
         // Number of children
         private int degree;
@@ -32,9 +36,9 @@ public class FibHeap<T> {
         private T item;
 
         // Priority
-        private int priority;
+        private double priority;
 
-        private FibNode(T item, int priority) {
+        private FibNode(T item, double priority) {
             this.degree = 0;
             this.isChildCut = false;
             this.parent = null;
@@ -53,70 +57,108 @@ public class FibHeap<T> {
             this.item = item;
         }
 
-        public int getPriority() {
+        public double getPriority() {
             return priority;
         }
     }
 
+    /* Pointer to the minimum element in the heap. */
     private FibNode<T> min = null;
 
+    /* Cached size of the heap, so we don't have to recompute this explicitly. */
     private int nNodes = 0;
 
-    public FibNode<T> getMin() {
-        return min;
+    /**
+     * Insert / Enqueue
+     * @param item
+     * @param priority
+     * @return
+     */
+    public FibNode<T> insert(T item, double priority) {
+        checkPriority(priority);
+
+        FibNode<T> result = new FibNode<T>(item, priority);
+        // combine trees and update min
+        this.min = combineTrees(this.min, result);
+
+        ++nNodes;
+        return result;
     }
 
+    /**
+     * return min ref
+     * @return
+     */
+    public FibNode<T> min() {
+        if (isEmpty())
+            throw new NoSuchElementException("Heap is empty.");
+        return this.min;
+    }
+
+
+    /**
+     * check if heap is empty
+     * @return true if heap is empty else false
+     */
+    public boolean isEmpty() {
+        return this.min == null;
+    }
+
+    /**
+     * nElements in heap
+     * @return no elements in heap
+     */
     public int size() {
         return nNodes;
     }
 
-    public boolean isEmpty() {
-        return nNodes == 0;
-    }
+    /**
+     * Remove min item from fibheap
+     * @return The min element of the Fibonacci heap.
+     * @throws NoSuchElementException If the heap is empty.
+     */
+    public FibNode<T> removeMin() throws NoSuchElementException {
+        /* Check for whether we're empty. */
+        if (isEmpty())
+            throw new NoSuchElementException("Heap empty!");
 
-    public FibNode<T> insert(T item, int priority) {
-        FibNode<T> node = new FibNode<T>(item, priority);
+        // decrement nNodes since we are removing item
+        --nNodes;
 
-        // combine two trees
-        min = combineTrees(min, node);
-
-        nNodes++;
-
-        return node;
-    }
-
-    public FibNode<T> removeMin() throws Exception {
-        if (isEmpty()) throw new Exception("Heap empty");
-
-        FibNode<T> top = min;
+        /* Grab the minimum element so we know what to return. */
+        FibNode<T> minItem = this.min;
 
         // only root at top level list
-        if (min.next == min) {
-            min = null;
-        } else {
-            min.prev.next = min.next;
-            min.next.prev = min.prev;
-            min = min.next;
+        if (this.min.next == this.min) {
+            this.min = null;
+        }
+        else {
+            this.min.prev.next = this.min.next;
+            this.min.next.prev = this.min.prev;
+            this.min = this.min.next;
         }
 
-        if (top.child != null) {
-            FibNode<T> visited = top.child;
+        // Update child-parent references to null
+        if (minItem.child != null) {
+            FibNode<?> curr = minItem.child;
             do {
-                visited.parent = null;
-                visited = visited.next;
-            } while (visited != top.child);
+                curr.parent = null;
+                curr = curr.next;
+            } while (curr != minItem.child);
         }
 
         // Find new min
-        min = combineTrees(min, top.child);
+        this.min = combineTrees(this.min, minItem.child);
 
         // If there was only one element in the heap initially, return the only element
-        if (min == null) return top;
+        if (this.min == null) return minItem;
 
         // consolidate the trees of equal degree
         List<FibNode<T>> trees = new ArrayList<FibNode<T>>();
         List<FibNode<T>> marked = new ArrayList<FibNode<T>>();
 
+//        for (FibNode<T> curr = this.min; marked.isEmpty() || marked.get(0) != curr; curr = curr.next)
+//            marked.add(curr);
         FibNode<T> currNode = min;
         marked.add(currNode);
         currNode = currNode.next;
@@ -124,25 +166,28 @@ public class FibHeap<T> {
             marked.add(currNode);
             currNode = currNode.next;
         }
-        // Ensure, currNode must be pointing to  min
 
-
-        // Perform Union of trees
+        // Perform union of trees
         for (FibNode<T> curr: marked) {
+            /* Keep merging until a match arises. */
             while (true) {
-                while (currNode.degree >= trees.size())
+
+                while (curr.degree >= trees.size())
                     trees.add(null);
 
                 // nothing to combine with; process next node
-                if (trees.get(currNode.degree) == null) {
-                    trees.set(currNode.degree, currNode);
+                if (trees.get(curr.degree) == null) {
+                    trees.set(curr.degree, curr);
                     break;
                 }
-                // else
 
                 FibNode<T> that = trees.get(curr.degree);
-                // clear the slot
+                // clear the bucket
                 trees.set(curr.degree, null);
+
+//                // Determine the trees with lesser priority
+//                FibNode<T> min = (that.priority < curr.priority)? that : curr;
+//                FibNode<T> max = (that.priority < curr.priority)? curr  : that;
 
                 // Determine the trees with lesser priority
                 FibNode<T> min;
@@ -156,11 +201,11 @@ public class FibHeap<T> {
                 }
 
                 // Remove max item from top level list and combine with min child
-                max.prev.next = max.next;
                 max.next.prev = max.prev;
+                max.prev.next = max.next;
 
-                max.prev = max;
                 max.next = max;
+                max.prev = max;
 
                 min.child = combineTrees(min.child, max);
 
@@ -173,68 +218,123 @@ public class FibHeap<T> {
             }
 
             // reset the min reference to root level min (<=)
-            if (curr.priority <= this.min.priority)
-                this.min = curr;
+            if (curr.priority <= this.min.priority) this.min = curr;
         }
-
-        return min;
+        return minItem;
     }
 
-    public void remove(FibNode<T> node) throws Exception {
-       decreaseKey(node, -1);
-       removeMin();
+    /**
+     * Decrease item priority and reorganize fibheap
+     * @param item
+     * @param newPriority
+     */
+    public void decreaseKey(FibNode<T> item, double newPriority) {
+        checkPriority(newPriority);
+        if (newPriority > item.priority)
+            throw new IllegalArgumentException("New priority exceeds old.");
+
+        /* Forward this to a helper function. */
+        decreaseKeyUnchecked(item, newPriority);
     }
 
-    public void decreaseKey(FibNode<T> node, int newPriority) {
-        node.priority = newPriority;
+    /**
+     * Decrease item priority and reorganize fibheap
+     * @param item
+     * @param newPriority
+     */
+    private void decreaseKeyUnchecked(FibNode<T> item, double newPriority) {
+        // update priority
+        item.priority = newPriority;
 
-        if (node.parent != null && node.priority <= node.parent.priority)
-            cascadingCut(node);
+        // cascading cut
+        if (item.parent != null && item.priority <= item.parent.priority)
+            cascadingCut(item);
 
-        if (node.priority <= min.priority)
-            min = node;
+        // update min
+        if (item.priority <= this.min.priority)
+            this.min = item;
     }
 
-    public FibNode<T> combineTrees(FibNode<T> ths, FibNode<T> tht) {
+    /**
+     * Remove Arbitrary node from fibheap
+     * @param item
+     */
+    public void removeArbitrary(FibNode<T> item) {
+        /* Use decreaseKey to drop the entry's key to -infinity.  This will
+         * guarantee that the node is cut and set to the global minimum.
+         */
+        decreaseKeyUnchecked(item, Double.NEGATIVE_INFINITY);
+
+        removeMin();
+    }
+
+    /**
+     * check if priority field is valid
+     * @param priority
+     */
+    private void checkPriority(double priority) {
+        if (Double.isNaN(priority))
+            throw new IllegalArgumentException(priority + " is invalid.");
+    }
+
+    /**
+     * Combine two fib heap nodes
+     * @param ths
+     * @param tht
+     * @param <T>
+     * @return
+     */
+    private static <T> FibNode<T> combineTrees(FibNode<T> ths, FibNode<T> tht) {
+
         if (ths == null && tht == null) return null;
         if (ths != null && tht == null) return ths;
         if (ths == null && tht != null) return tht;
 
-        FibNode<T> tmp = ths.next;
 
+        FibNode<T> tmp = ths.next; // Cache this since we're about to overwrite it.
         ths.next = tht.next;
         ths.next.prev = ths;
-
         tht.next = tmp;
         tht.next.prev = tht;
 
-        return ths.priority < tht.priority ? ths : tht;
+        return ths.priority < tht.priority? ths : tht;
+
     }
 
-    public void cascadingCut(FibNode<T> node) {
+
+
+    /**
+     * Cuts a node from its parent.  If the parent was already marked, recursively
+     * cuts that node from its parent as well.
+     *
+     * @param node The node to cut from its parent.
+     */
+    private void cascadingCut(FibNode<T> node) {
+        // mark the node
         node.isChildCut = false;
 
         if (node.parent == null) return;
 
         // reset the siblings
         if (node.next != node) {
-            node.prev.next = node.next;
             node.next.prev = node.prev;
+            node.prev.next = node.next;
         }
 
         // reset the parent's child ref
         if (node.parent.child == node) {
             node.parent.child = (node.next != node) ? node.next : null;
         }
+
         // update degree of parent
-        node.parent.degree--;
+        --node.parent.degree;
 
         // reset the child sibling ref
-        node.next = node;
         node.prev = node;
+        node.next = node;
 
         // combine trees
-        min = combineTrees(min, node);
+        this.min = combineTrees(this.min, node);
 
         // cascading cut
         if (node.parent.isChildCut)
@@ -242,7 +342,7 @@ public class FibHeap<T> {
         else
             node.parent.isChildCut = true;
 
-        // node is in top level list, so clear parent ref
+        /* Clear the relocated node's parent; it's now a root. */
         node.parent = null;
     }
 }

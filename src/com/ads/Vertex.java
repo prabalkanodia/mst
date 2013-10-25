@@ -17,7 +17,7 @@ public class Vertex {
 
     public Vertex(int v) {
         this.v = v;
-        this.key = -1;
+        this.key = GraphUtils.INFINITY;
         this.pi = null;
 
     }
