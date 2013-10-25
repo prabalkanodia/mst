@@ -39,7 +39,7 @@ public class GraphUtils {
         long start = System.currentTimeMillis();
         do {
             //g = GraphUtils.createGraph(v, d);
-            g = GraphUtils.createQuickGraph(v, d);
+            g = GraphUtils.createGraph(v, d);
         } while (!GraphUtils.isConnectedDFS(g));
 
         long end = System.currentTimeMillis();
@@ -84,7 +84,9 @@ public class GraphUtils {
                 //g.addEdge(Integer.parseInt(edgeInfo[0]), Integer.parseInt(edgeInfo[1]));
                 g.addEdge(
                         new Edge(
-                            Integer.parseInt(edgeInfo[0]), Integer.parseInt(edgeInfo[1]), Integer.parseInt(edgeInfo[2])
+                            g.vertices()[Integer.parseInt(edgeInfo[0])],
+                            g.vertices()[Integer.parseInt(edgeInfo[1])],
+                            Integer.parseInt(edgeInfo[2])
                         )
                 );
                 count++;
@@ -101,22 +103,51 @@ public class GraphUtils {
         return g;
     }
 
+//    public static Graph createGraph(int v, int d) {
+//        long e = calculateE(v, d);
+//        Graph g = new Graph(v);
+//        HashSet<Edge> edges = new HashSet<Edge>();
+//
+//        while (g.getE() <= e) {
+//            Random r = new Random();
+//            int x = r.nextInt(v);
+//            int y = r.nextInt(v);
+//            int cost = r.nextInt(MAX_EDGE_COST) + 1;
+//
+//            Edge edge = new Edge(g.vertices()[x], g.vertices()[y], cost);
+//            if (x != y && !edges.contains(edge)) {
+//                edges.add(edge);
+//                //g.addEdge(x, y);
+//                g.addEdge(edge);
+//            }
+//        }
+//
+//        return g;
+//    }
+
     public static Graph createGraph(int v, int d) {
         long e = calculateE(v, d);
         Graph g = new Graph(v);
-        HashSet<Edge> edges = new HashSet<Edge>();
+        //HashSet<Edge> edges = new HashSet<Edge>();
+        boolean[][] marked = new boolean[v][v];
+        for (int i = 0; i < v; i++)
+            for (int j = 0; j < v; j++) {
+                marked[i][j] = false;
+            }
 
-        while (g.getE() <= e) {
+        long count = 0;
+        while (count < e) {
             Random r = new Random();
             int x = r.nextInt(v);
             int y = r.nextInt(v);
             int cost = r.nextInt(MAX_EDGE_COST) + 1;
 
-            Edge edge = new Edge(x, y, cost);
-            if (x != y && !edges.contains(edge)) {
-                edges.add(edge);
+            if (x != y && !marked[x][y]) {
+                marked[x][y] = true;
+                marked[y][x] = true;
                 //g.addEdge(x, y);
-                g.addEdge(edge);
+                g.addEdge(new Edge(g.vertices()[x], g.vertices()[y], cost));
+                count++;
             }
         }
 

@@ -35,6 +35,12 @@ public class PrimMST {
         q = new LinkedList<Vertex>();
     }
 
+    public void fibmst(Graph g) throws Exception {
+        FibHeap fibPQ = new FibHeap();
+
+        Graph mst = new Graph(g.getV());
+    }
+
     public void mst(Graph g) throws Exception {
         int numV = g.getV();
         Random rnd = new Random();
@@ -65,6 +71,45 @@ public class PrimMST {
                     v.setPi(u);
                     v.setKey(e.getCost());
 
+                    // ensure for vertex
+                    edges[v.getV()] = e;
+                    //edges.add(e);
+                }
+            }
+        }
+    }
+
+    public void mst2(Graph g) throws Exception {
+        int numV = g.getV();
+        Random rnd = new Random();
+        int start = rnd.nextInt(numV);
+//        Vertex r = new Vertex(start);
+        Vertex r = (g.vertices())[start];
+        r.setKey(0);
+
+        q.add(r);
+//        for (int i = 0; i < g.getV(); i++) {
+//            if (i != start)
+//                //q.add(new Vertex(i));
+//                q.add((g.vertices())[i]);
+//        }
+
+        while (!q.isEmpty()) {
+            Vertex u = extractMin(q);
+            inTree[u.getV()] = true;
+            for (Edge e : g.adjList(u.getV())) {
+                //int x = e.other(u.getV());
+                //if (inTree[x]) continue;
+
+                //Vertex v = findV(q, x);
+                Vertex v = e.otherV(u);
+                if (inTree[v.getV()]) continue;
+
+                if (v != null && (v.getKey() == -1 || e.getCost() < v.getKey())) {
+                    v.setPi(u);
+                    v.setKey(e.getCost());
+
+                    q.add(v);
                     // ensure for vertex
                     edges[v.getV()] = e;
                     //edges.add(e);
@@ -109,14 +154,10 @@ public class PrimMST {
         if (q.size() == 0) throw new Exception("Queue must not be empty while extracting element with min key");
 
         int minKey = -1;
-        //Vertex v = null;
-        //int index = 0;
         int rmv = 0;
 
         if (q.size() >= 1) {
             minKey = q.get(0).getKey();
-            //v = q.get(index);
-            //index++;
         }
 
         for (int i = 1; i < q.size(); i++) {
@@ -124,12 +165,10 @@ public class PrimMST {
             if (key != -1 && key < minKey) {
                 minKey = key;
                 rmv = i;
-                //v = q.get(i);
             }
         }
 
         return q.remove(rmv);
-        //return v;
     }
 
     public int cost() {

@@ -25,7 +25,7 @@ public class Main {
 //                for (int i = 0; i < g.vertices().length; i++)
 //                    System.out.println((g.vertices())[i].getV());
                 prim.reset(g, false);
-                prim.mst(g);
+                prim.mst2(g);
                 prim.printMST();
                 int w2 = prim.cost();
 //                System.out.println("_____VERTICES______");
