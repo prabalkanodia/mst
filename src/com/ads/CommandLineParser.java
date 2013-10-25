@@ -3,11 +3,10 @@ package com.ads;
 import java.io.File;
 
 /**
- * Created with IntelliJ IDEA.
+ * Command Line Parser to parse options and save into Context
  * User: prabal
  * Date: 10/18/13
  * Time: 8:05 PM
- * To change this template use File | Context | File Templates.
  */
 public class CommandLineParser {
 

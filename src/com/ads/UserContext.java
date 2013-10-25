@@ -1,11 +1,10 @@
 package com.ads;
 
 /**
- * Created with IntelliJ IDEA.
+ * Settings for UserMode
  * User: prabal
  * Date: 10/18/13
  * Time: 8:37 PM
- * To change this template use File | Context | File Templates.
  */
 public class UserContext extends Context {
 

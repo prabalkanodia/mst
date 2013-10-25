@@ -1,11 +1,10 @@
 package com.ads;
 
 /**
- * Created with IntelliJ IDEA.
+ * Settings for RandomMode
  * User: prabal
  * Date: 10/18/13
  * Time: 8:40 PM
- * To change this template use File | Settings | File Templates.
  */
 public class RandomContext extends Context {
 
