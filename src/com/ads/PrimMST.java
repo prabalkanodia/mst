@@ -244,7 +244,7 @@ public class PrimMST {
         System.out.println(this.cost());
         for (Edge e : edges) {
             if (e != null)
-                System.out.println(String.format("%d %d %d", e.from(), e.to(), e.getCost()));
+                System.out.println(String.format("%d %d", e.from(), e.to()));
         }
     }
 

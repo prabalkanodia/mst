@@ -42,20 +42,21 @@ public class Main {
                 UserContext ctxt = (UserContext)context;
                 Graph g = GraphUtils.createGraph(ctxt.getFilename());
 
-                PrimMST prim = new PrimMST(g, true);
-                prim.reset(g, false);
-                System.out.println("MST using Fiboannci Heap");
-                prim.mst(g);
-                prim.printMST();
-                long w1 = prim.cost();
-
-                prim.reset(g, false);
-                System.out.println("MST using Array");
-                prim.mst(g);
-                prim.printMST();
-                long w2 = prim.cost();
-
-                System.out.println("PrimFib: " + w1 + " PrimArr: " + w2);
+                if (ctxt.IsFHeap()) {
+                    PrimMST prim = new PrimMST(g, ctxt.IsFHeap());
+                    System.out.println("MST using Fiboannci Heap");
+                    prim.mst(g);
+                    prim.printMST();
+                    //long w1 = prim.cost();
+                    //System.out.println("PrimFib: " + w1);
+                } else {
+                    PrimMST prim = new PrimMST(g, ctxt.IsFHeap());
+                    System.out.println("MST using Array");
+                    prim.mst(g);
+                    prim.printMST();
+                    //long w2 = prim.cost();
+                    //System.out.println("PrimArray: " + w2);
+                }
             }
         } catch(Exception e) {
             System.out.println("Exception: " + e.getMessage());

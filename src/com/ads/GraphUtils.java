@@ -3,10 +3,7 @@ package com.ads;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Graph Utilities to generate graph and traverse bfs and dfs way
@@ -44,7 +41,7 @@ public class GraphUtils {
         } while (!GraphUtils.isConnectedDFS(g));
 
         long end = System.currentTimeMillis();
-        System.out.println("Graph generation time: " + (end - start)/1000);
+        System.out.println("Graph generation time: " + (end - start));
 
         return g;
     }
@@ -77,8 +74,8 @@ public class GraphUtils {
             // count of edges
             long count = 0; // must match numE at end
             // Read edges (from, to, cost)
-            while ((line = input.readLine().trim()) != null && !("".equals(line))) {
-                String[] edgeInfo = line.split("\\s+");
+            while ((line = input.readLine()) != null && !("".equals(line.trim()))) {
+                String[] edgeInfo = line.trim().split("\\s+");
                 if (edgeInfo.length != 3)
                     throw new Exception("Edge format required - from to cost");
 
@@ -232,7 +229,7 @@ public class GraphUtils {
             status[i] = Status.UNVISITED;
 
         for (int i = 0; i < g.getV(); i++)
-            visitV(g, i, status);
+            visitVDFSItr(g, i, status);
 
         for (int i = 0; i < g.getV(); i++)
             if (status[i] != Status.VISITED)
@@ -251,5 +248,26 @@ public class GraphUtils {
         }
 
         status[u] = Status.VISITED;
+    }
+
+    private static void visitVDFSItr(Graph g, int u, Enum<Status>[] status) {
+        status[u] = Status.VISITING;
+
+        Stack<Integer> s = new Stack<Integer>();
+        s.push(u);
+
+        while (!s.empty()) {
+            int top = s.pop();
+
+            for(Edge e : g.adjList(top)) {
+                int v = e.other(top);
+                if (status[v] == Status.UNVISITED) {
+                    status[v] = Status.VISITING;
+                    s.push(v);
+                }
+            }
+
+            status[top] = Status.VISITED;
+        }
     }
 }

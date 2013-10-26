@@ -9,10 +9,10 @@ package com.ads;
 public class UserContext extends Context {
 
     // Fibonacci Heap scheme or Simple scheme
-    boolean isFHeap;
+    private boolean isFHeap;
 
     // File-name
-    String filename;
+    private String filename;
 
     UserContext(boolean isFHeap, String filename) {
         super(false);
